@@ -1,5 +1,5 @@
 // Configuration
-const GEMINI_API_KEY = 'AIzaSyBWz7mkRcaQH23Car5MWoHepbrpHVEo_wc';
+const GEMINI_API_KEY = 'Your API Key';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 // Alternative API endpoints to try
