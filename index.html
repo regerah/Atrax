@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrax Smart Contract Auditor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Atrax Smart Contract Auditor</h1>
+            </div>
+            <p class="subtitle">Professional smart contract security analysis and audit reports</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-tabs">
+                    <button class="tab-btn active" data-tab="file">
+                        <i class="fas fa-file-upload"></i>
+                        Upload File
+                    </button>
+                    <button class="tab-btn" data-tab="code">
+                        <i class="fas fa-code"></i>
+                        Enter Code
+                    </button>
+                    <button class="tab-btn" data-tab="url">
+                        <i class="fas fa-link"></i>
+                        From URL
+                    </button>
+                </div>
+
+                <div class="tab-content">
+                    <!-- File Upload Tab -->
+                    <div class="tab-panel active" id="file-tab">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3>Upload Solidity File</h3>
+                            <p>Drag and drop your .sol file here or click to browse</p>
+                            <input type="file" id="fileInput" accept=".sol" hidden>
+                            <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
+                                Browse Files
+                            </button>
+                        </div>
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-details">
+                                <i class="fas fa-file-code"></i>
+                                <span id="fileName"></span>
+                                <button class="remove-file" onclick="removeFile()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Input Tab -->
+                    <div class="tab-panel" id="code-tab">
+                        <div class="code-input-container">
+                            <label for="codeInput">Paste your Solidity code:</label>
+                            <textarea id="codeInput" placeholder="// Paste your Solidity contract code here...&#10;&#10;pragma solidity ^0.8.0;&#10;&#10;contract MyContract {&#10;    // Your contract code...&#10;}" rows="15"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- URL Input Tab -->
+                    <div class="tab-panel" id="url-tab">
+                        <div class="url-input-container">
+                            <label for="urlInput">Enter contract URL (GitHub, Etherscan, etc.):</label>
+                            <input type="url" id="urlInput" placeholder="https://github.com/user/repo/blob/main/contract.sol">
+                            <button class="fetch-btn" onclick="fetchFromUrl()">
+                                <i class="fas fa-download"></i>
+                                Fetch Contract
+                            </button>
+                        </div>
+                        <div class="url-status" id="urlStatus" style="display: none;"></div>
+                    </div>
+                </div>
+
+                <div class="audit-options">
+                    <h3>Audit Configuration</h3>
+                    <div class="options-grid">
+                        <label class="option-item">
+                            <input type="checkbox" id="securityCheck" checked>
+                            <span class="checkmark"></span>
+                            Security Vulnerabilities
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="gasCheck" checked>
+                            <span class="checkmark"></span>
+                            Gas Optimization
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="bestPracticesCheck" checked>
+                            <span class="checkmark"></span>
+                            Best Practices
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="codeQualityCheck" checked>
+                            <span class="checkmark"></span>
+                            Code Quality
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="accessControlCheck" checked>
+                            <span class="checkmark"></span>
+                            Access Control
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="reentrancyCheck" checked>
+                            <span class="checkmark"></span>
+                            Reentrancy Protection
+                        </label>
+                    </div>
+                </div>
+
+                <button class="audit-btn" id="auditBtn" onclick="startAudit()">
+                    <i class="fas fa-search"></i>
+                    Start Audit
+                </button>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Audit Results</h2>
+                    <button class="download-btn" id="downloadBtn" onclick="downloadReport()">
+                        <i class="fas fa-download"></i>
+                        Download PDF Report
+                    </button>
+                </div>
+                
+                <div class="audit-summary" id="auditSummary">
+                    <!-- Summary will be populated here -->
+                </div>
+
+                <div class="audit-details" id="auditDetails">
+                    <!-- Detailed results will be populated here -->
+                </div>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                </div>
+                <h3>Analyzing Smart Contract...</h3>
+                <p id="loadingText">Initializing audit process...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
