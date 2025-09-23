@@ -148,10 +148,6 @@ The generated PDF reports include:
 4. Test thoroughly
 5. Submit a pull request
 
-## License
-
-MIT License - see LICENSE file for details
-
 ## Support
 
 For issues, questions, or contributions, please open an issue on GitHub.
